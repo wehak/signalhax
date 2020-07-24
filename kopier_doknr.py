@@ -7,7 +7,7 @@ import win32clipboard
 
 separator = "," # hvilken separator som skal brukes i output-streng
 search_str_list = [
-    "[A-Z]{3}-[0-9]{2}-[A-Z]-[0-9]{5}",  # leter etter prosjektnr, feks MIP-00-A-12345
+    "[A-Z]{3}.[0-9]{2}.[A-Z].[0-9]{5}",  # leter etter prosjektnr, feks MIP-00-A-12345
 #    "BE-[0-9]{6}",
 #    "EH-[0-9]{6}",
 #    "EL-[0-9]{6}",
@@ -33,6 +33,22 @@ def filter_and_list():
     f = lambda x : re.findall(x, input_str, re.I)
     return [y for y in (f(x) for x in search_str_list) if len(y) > 0]
 
+# setter inn bindestrek i prosjektnr
+def clean_hyphen(lst):
+    for series in lst:
+        print(series[0])
+        if re.search("[A-Z]{3}", series[0], re.I):
+            series = insert_hyphen(series)
+    return lst
+
+def insert_hyphen(lst):
+    # new_list = []
+    # for string in lst:
+    new_list = ["{}-{}-{}-{}" .format(string[:3], string[4:6], string[7:8], string[9:]) for string in lst]
+    #     new_list.append("{}-{}-{}-{}".format(string[:3], string[4:6], string[7:8], string[9:]))
+    return new_list
+
+
 ############
 # program #
 ############
@@ -46,6 +62,8 @@ while True:
     while len(docnr_list) == 0:
         print("Ingen verdier funnet.")
         docnr_list = filter_and_list()
+    
+    docnr_list = clean_hyphen(docnr_list)
       
     while True:
         for i, output_list in enumerate(docnr_list, 1):
