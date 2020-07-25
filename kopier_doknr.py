@@ -35,17 +35,13 @@ def filter_and_list():
 
 # setter inn bindestrek i prosjektnr
 def clean_hyphen(lst):
-    for series in lst:
-        print(series[0])
-        if re.search("[A-Z]{3}", series[0], re.I):
-            series = insert_hyphen(series)
+    for i in range(len(lst)):
+        if re.search("[A-Z]{3}", lst[i][0], re.I):
+            lst[i] = insert_hyphen(lst[i])
     return lst
 
 def insert_hyphen(lst):
-    # new_list = []
-    # for string in lst:
-    new_list = ["{}-{}-{}-{}" .format(string[:3], string[4:6], string[7:8], string[9:]) for string in lst]
-    #     new_list.append("{}-{}-{}-{}".format(string[:3], string[4:6], string[7:8], string[9:]))
+    new_list = ["{}-{}-{}-{}" .format(string[:3].upper(), string[4:6], string[7:8].upper(), string[9:]) for string in lst]
     return new_list
 
 
