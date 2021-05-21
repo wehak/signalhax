@@ -17,6 +17,7 @@ import win32clipboard
 
 separator = "," # hvilken separator som skal brukes i output-streng
 doknr = "[A-Z]{3}-[0-9]{2}-[A-Z]-[0-9]{5}"  # leter etter prosjektnr, feks MIP-00-A-12345
+# doknr = "SA-[0-9]{6}[-\d]{0,4}" # leter etter s-nr
 
 
 ############

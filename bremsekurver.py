@@ -11,9 +11,9 @@ bremsekraft = 109
 
 
 # strekning
-linjehastighet = 130 # [km/t] utgangshastighet
-målhastighet = 0 # [km/t]
-fall = 10 # [promille] stigning angis med negativt fortegn
+linjehastighet = 70 # [km/t] utgangshastighet
+målhastighet = 40 # [km/t]
+fall = 35 # [promille] stigning angis med negativt fortegn
 
 
 # til beregning
@@ -41,6 +41,7 @@ trv_bremselengde = round((v_0**2 - v_mål**2) / (2 * trv_retardasjon))
 
 
 
+# hastighet som en funksjon av avstand
 def v(s, T):
     v_list = []
     for i in s:
@@ -61,7 +62,7 @@ def trv_bremsekurve(T):
     return ventetid + kurve
 
 
-y0 = trv_bremsekurve(8)
+y0 = trv_bremsekurve(13)
 
 interval_A = handbok_bremsekurve(13 + tilsetningstid)
 interval_B = handbok_bremsekurve(8 + tilsetningstid)
